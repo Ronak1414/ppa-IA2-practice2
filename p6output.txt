@@ -1,1 +1,152 @@
+ gcc -g p6original.c
+ gdb ./a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x8e0: file p6original.c, line 52.
+(gdb) r
+Starting program: /home/runner/ppa-IA2-practice2/a.out 
+warning: Error disabling address space randomization: Operation not permitted
 
+Breakpoint 1, main () at p6original.c:52
+52  {
+(gdb) n
+54    input(a);
+(gdb) s
+input (
+    a=0x7ffdd1e60ed0 "8\017\346\321\375\177") at p6original.c:5
+5     printf("Enter the word :\n");
+(gdb) n
+Enter the word :
+6     scanf("%s",a);
+(gdb) n
+hello
+8   } 
+(gdb) n
+main () at p6original.c:55
+55    copy(a,b);
+(gdb) s
+copy (a=0x7ffdd1e60ed0 "hello", 
+    b=0x7ffdd1e60ef0 "@\033\066j\243\177")
+    at p6original.c:18
+18    for( int i=0;a[i] !='\0';i++)
+(gdb) n
+20        b[i]=a[i];
+(gdb) n
+18    for( int i=0;a[i] !='\0';i++)
+(gdb) n
+20        b[i]=a[i];
+(gdb) n
+18    for( int i=0;a[i] !='\0';i++)
+(gdb) n
+20        b[i]=a[i];
+(gdb) n
+18    for( int i=0;a[i] !='\0';i++)
+(gdb) n
+20        b[i]=a[i];
+(gdb) n
+18    for( int i=0;a[i] !='\0';i++)
+(gdb) n
+20        b[i]=a[i];
+(gdb) n
+18    for( int i=0;a[i] !='\0';i++)
+(gdb) n
+22  }
+(gdb) p b[i]
+No symbol "i" in current context.
+(gdb) p b
+$1 = 0x7ffdd1e60ef0 "hello\177"
+(gdb) n
+main () at p6original.c:56
+56    reverse(b);
+(gdb) s
+reverse (b=0x7ffdd1e60ef0 "hello\177")
+    at p6original.c:27
+27    int n=strrlen(b);
+(gdb) s
+strrlen (a=0x7ffdd1e60ef0 "hello\177")
+    at p6original.c:12
+12    for(n=0;a[n];n++);
+(gdb) n
+13    return n;
+(gdb) p n
+$2 = 6
+(gdb) n
+14  }
+(gdb) n
+reverse (b=0x7ffdd1e60ef0 "hello\177")
+    at p6original.c:28
+28    n--;
+(gdb) p n
+$3 = 6
+(gdb) n
+35    for(i=0;i<n/2;i++)
+(gdb) n
+37        t=b[i];
+(gdb) n
+38        b[i]=b[n-i];
+(gdb) n
+39        b[n-i]=t;
+(gdb) n
+35    for(i=0;i<n/2;i++)
+(gdb) p t
+$4 = 104
+(gdb) n
+37        t=b[i];
+(gdb) n
+38        b[i]=b[n-i];
+(gdb) n
+39        b[n-i]=t;
+(gdb) n
+35    for(i=0;i<n/2;i++)
+(gdb) p b[i]
+$5 = 111 'o'
+(gdb) n
+43    return t;
+(gdb) n
+44  }
+(gdb) n
+main () at p6original.c:57
+57    output(a,b);
+(gdb) s
+output (a=0x7ffdd1e60ed0 "hello", 
+    b=0x7ffdd1e60ef0 "\177olleh")
+    at p6original.c:48
+48    printf("The reverse of %s is \n %s",a,b);
+(gdb) n
+The reverse of hello is 
+49  }
+(gdb) n
+main () at p6original.c:58
+58    return 0;
+(gdb) n
+59  }(gdb) n
+__libc_start_main (
+    main=0x557e4a2008d8 <main>, argc=1, 
+    argv=0x7ffdd1e61008, 
+    init=<optimized out>, 
+    fini=<optimized out>, 
+    rtld_fini=<optimized out>, 
+    stack_end=0x7ffdd1e60ff8)
+    at ../csu/libc-start.c:344
+344 ../csu/libc-start.c: No such file or directory.
+(gdb) n
+ olleh[Inferior 1 (process 129) exited normally]
+(gdb) n
+The program is not being run.
+(gdb) n
+The program is not being run.
+(gdb) 

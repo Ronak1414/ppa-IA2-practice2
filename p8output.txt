@@ -1,1 +1,180 @@
+ gcc -g p1original.c
+ gcc -g p8original.c
+ gdb ./a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./a.out...done.
+(gdb) b main
+Breakpoint 1 at 0xa10: file p8original.c, line 64.
+(gdb) r
+Starting program: /home/runner/ppa-IA2-practice2/a.out 
+warning: Error disabling address space randomization: Operation not permitted
 
+Breakpoint 1, main () at p8original.c:64
+64  {
+(gdb) n
+65    int n=input_n();
+(gdb) s
+input_n () at p8original.c:8
+8   {
+(gdb) n
+10    printf("Enter the number of triangles you want to enter");
+(gdb) n
+11    scanf("%d",&n);
+(gdb) n
+Enter the number of triangles you want to enter2
+12    return n;
+(gdb) n
+13  }
+(gdb) n
+main () at p8original.c:66
+66    triangle t[n];
+(gdb) s
+67    input_triangles(n,t);
+(gdb) s
+input_triangles (n=2, t=0x7ffd62bd09f0) at p8original.c:26
+26    for (int i=0;i<n;i++)
+(gdb) n
+28        t[i]=input();
+(gdb) s
+input () at p8original.c:16
+16  { triangle t;
+(gdb) n
+17    printf("Enter the base of the triangle");
+(gdb) n
+18    scanf("%f",&t.b);
+(gdb) n
+Enter the base of the triangle5
+19    printf("Enter the altitude of the triangle");
+(gdb) n
+20    scanf("%f",&t.a);
+(gdb) n
+Enter the altitude of the triangle2
+21    return t;
+(gdb) n
+22  }
+(gdb) n
+input_triangles (n=2, t=0x7ffd62bd09f0) at p8original.c:26
+26    for (int i=0;i<n;i++)
+(gdb) n
+28        t[i]=input();
+(gdb) s
+input () at p8original.c:16
+16  { triangle t;
+(gdb) n
+17    printf("Enter the base of the triangle");
+(gdb) n
+18    scanf("%f",&t.b);
+(gdb) n
+Enter the base of the triangle3
+19    printf("Enter the altitude of the triangle");
+(gdb) s
+__printf (format=0x5589abc00c58 "Enter the altitude of the triangle")
+    at printf.c:28
+28  printf.c: No such file or directory.
+(gdb) n
+32  in printf.c
+(gdb) n
+33  in printf.c
+(gdb) n
+32  in printf.c
+(gdb) n
+33  in printf.c
+(gdb) n
+37  in printf.c
+(gdb) s
+input () at p8original.c:20
+20    scanf("%f",&t.a);
+(gdb) n
+Enter the altitude of the triangle3
+21    return t;
+(gdb) n
+22  }
+(gdb) n
+input_triangles (n=2, t=0x7ffd62bd09f0) at p8original.c:26
+26    for (int i=0;i<n;i++)
+(gdb) n
+30  }
+(gdb) n
+main () at p8original.c:68
+68    find_area(n,t);
+(gdb) s
+find_area (n=2, t=0x7ffd62bd09f0) at p8original.c:39
+39   for(int i=0;i<n;i++)
+(gdb) n
+41       area(&t[i]);
+(gdb) s
+area (t=0x7ffd62bd09f0) at p8original.c:34
+34    t->area = 0.5*t->b * t->a;
+(gdb) n
+35  }
+(gdb) n
+find_area (n=2, t=0x7ffd62bd09f0) at p8original.c:39
+39   for(int i=0;i<n;i++)
+(gdb) n
+41       area(&t[i]);
+(gdb) s
+area (t=0x7ffd62bd09fc) at p8original.c:34
+34    t->area = 0.5*t->b * t->a;
+(gdb) n
+35  }
+(gdb) n
+find_area (n=2, t=0x7ffd62bd09f0) at p8original.c:39
+39   for(int i=0;i<n;i++)
+(gdb) n
+43  }
+(gdb) n
+main () at p8original.c:70
+70    small=smallest(n,t);
+(gdb) s
+smallest (n=2, t=0x7ffd62bd09f0) at p8original.c:47
+47    triangle small=t[0];
+(gdb) n
+48    for(int i=1;i<n;i++)
+(gdb) n
+50    if(small.area>t[i].area)
+(gdb) n
+52      small=t[i];
+(gdb) n
+48    for(int i=1;i<n;i++)
+(gdb) n
+55    return small;
+(gdb) n
+56  }
+(gdb) n
+main () at p8original.c:71
+71    output(small);
+(gdb) s
+output (smallest=...) at p8original.c:60
+60    printf("The area of the smallest triangle with base %f and altitude %f is %f",smallest.b,smallest.a,smallest.area);
+(gdb) n
+61  }
+(gdb) n
+main () at p8original.c:72
+72    return 0;
+(gdb) n
+73  }
+(gdb) n
+__libc_start_main (main=0x5589abc009ff <main>, argc=1, argv=0x7ffd62bd0b68, 
+    init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, 
+    stack_end=0x7ffd62bd0b58) at ../csu/libc-start.c:344
+344 ../csu/libc-start.c: No such file or directory.
+(gdb) n
+The area of the smallest triangle with base 3.000000 and altitude 3.000000 is 4.500000[Inferior 1 (process 4464) exited normally]
+(gdb) n
+The program is not being run.
+(gdb) n
+The program is not being run.
+(gdb) 

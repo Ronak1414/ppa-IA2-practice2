@@ -1,1 +1,77 @@
+ gcc -g p1original.c
+ gcc -g p7original.c
+ gdb ./a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x851: file p7original.c, line 29.
+(gdb) r
+Starting program: /home/runner/ppa-IA2-practice2/a.out 
+warning: Error disabling address space randomization: Operation not permitted
 
+Breakpoint 1, main () at p7original.c:29
+29  {
+(gdb) n
+31    t=input();
+(gdb) s
+input () at p7original.c:10
+10  { triangle n;
+(gdb) n
+11    printf("Enter the base of the triangle");
+(gdb) n
+12    scanf("%f",&n.b);
+(gdb) n
+Enter the base of the triangle5
+13    printf("Enter the altitude of the triangle");
+(gdb) n
+14    scanf("%f",&n.a);
+(gdb) n
+Enter the altitude of the triangle2
+15    return n;
+(gdb) n
+16  }
+(gdb) n
+main () at p7original.c:32
+32   area (&t);
+(gdb) s
+area (t=0x7fff17e9602c) at p7original.c:20
+20    t->area = 0.5*t->b * t->a;
+(gdb) n
+21  }
+(gdb) n
+main () at p7original.c:33
+33    output(t);
+(gdb) s
+output (t=...) at p7original.c:25
+25    printf("the area of the triangle with base and altitude = %f and %f is %f\n",t.b,t.a,t.area);
+(gdb) n
+the area of the triangle with base and altitude = 5.000000 and 2.000000 is 5.000000
+26  }
+(gdb) n
+main () at p7original.c:34
+34    return 0;
+(gdb) n
+35  }(gdb) n
+__libc_start_main (main=0x556753a00849 <main>, argc=1, argv=0x7fff17e96128, 
+    init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, 
+    stack_end=0x7fff17e96118) at ../csu/libc-start.c:344
+344 ../csu/libc-start.c: No such file or directory.
+(gdb) n
+[Inferior 1 (process 1189) exited normally]
+(gdb) n
+The program is not being run.
+(gdb) n
+The program is not b
